@@ -5,8 +5,29 @@ from .. import db
 from ..models import User
 from .forms import NameForm
 from . import main
+from flask_mail import Mail, Message
+from .. import mail
+import sys
+sys.path.append('../../..')
+import app
+from config import ConfigBase
+from threading import Thread
 
 
+def send_async_email(app, msg):
+    with app.app_context():
+        mail.send(msg)
+
+
+def send_email(to, subject, template, **kwargs):
+    msg = Message(ConfigBase.FLASKY_MAIL_SUBJECT_PREFIX + ' ' + subject,
+                  sender=ConfigBase.FLASKY_MAIL_SENDER, recipients=[to])
+    msg.body = render_template(template + '.txt', **kwargs)
+    msg.html = render_template(template + '.html', **kwargs)
+    #thr = Thread(target=send_async_email, args=[app, msg])
+    #thr.start()
+    mail.send(msg)
+    #return thr
 
 
 @main.route('/',methods=['GET','POST'])
@@ -18,6 +39,9 @@ def index():
             user = User(username=form.name.data)
             db.session.add(user)
             session['known'] = False
+	    if ConfigBase.FLASKY_ADMIN:
+		send_email(ConfigBase.FLASKY_ADMIN, 'New User',
+                           'mail/new_user', user=user)
         else:
             session['known'] = True
 
