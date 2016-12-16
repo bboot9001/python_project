@@ -23,16 +23,21 @@ class ConfigBase:
     FLASKY_MAIL_SENDER = 'Blog Admin <623633583@qq.com>'
     FLASKY_ADMIN = os.environ.get('BLOG_ADMIN')
 
+    def __init__(self):
+        """默认没有任何操作"""
+        pass
 
     @staticmethod
     def init_app(app):
+        """ 初始化配置文件"""
         pass
 
 
 class DevConfig(ConfigBase):
+    """开发配置类"""
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = DB_URI_DEV
-    SQLALCHEMY_COMMIT_ON_TEARDOWN=True
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
 
 config = {
