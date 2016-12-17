@@ -22,9 +22,6 @@ class ConfigBase:
     FLASKY_MAIL_SUBJECT_PREFIX = '[BLOG]'
     FLASKY_MAIL_SENDER = 'Blog Admin <623633583@qq.com>'
     FLASKY_ADMIN = os.environ.get('BLOG_ADMIN')
-    FLASKY_POSTS_PER_PAGE = 20
-    FLASKY_FOLLOWERS_PER_PAGE = 50
-    FLASKY_COMMENTS_PER_PAGE = 30
 
 
     @staticmethod
