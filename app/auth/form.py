@@ -41,10 +41,11 @@ class RegistrationForm(Form):
 
 
 class ChangePasswordForm(Form):
-    old_password = PasswordField('Old password',validators=[Required()])
-    password     = PasswordField('New password',validators=[
-                Required(),EqualTo('password2',message='Passwords must match')])
-    password2 = PasswordField('Confirm new password',validators=[Required()])
+    """修改密码表单"""
+    old_password = PasswordField('Old password', validators =[Required()])
+    password     = PasswordField('New password', validators=[
+                Required(), EqualTo('password2', message='Passwords must match')])
+    password2 = PasswordField('Confirm new password', validators=[Required()])
     submit  = SubmitField('Update Password')
 
 class PasswordResetRequestForm(Form):
