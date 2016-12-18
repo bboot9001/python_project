@@ -90,7 +90,8 @@ ENV/
 .ropeproject
 
 #mydef
-
+tags
+migrations/
 constsdef.py
 constsdef1.py
 *.*~
