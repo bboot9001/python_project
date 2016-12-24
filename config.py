@@ -22,6 +22,7 @@ class ConfigBase:
     FLASKY_MAIL_SUBJECT_PREFIX = '[BLOG]'
     FLASKY_MAIL_SENDER = 'Blog Admin <623633583@qq.com>'
     FLASKY_ADMIN = os.environ.get('BLOG_ADMIN')
+    FLASKY_POSTS_PER_PAGE = 20
 
     def __init__(self):
         """默认没有任何操作"""
